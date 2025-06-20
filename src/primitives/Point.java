@@ -76,8 +76,10 @@ public class Point {
      * @return squared distance between the points
      */
     public double distanceSquared(Point other) {
-        Double3 diff = xyz.subtract(other.xyz);
-        return diff.d1() * diff.d1() + diff.d2() * diff.d2() + diff.d3() * diff.d3();
+        double dx = xyz.d1() - other.xyz.d1();
+        double dy = xyz.d2() - other.xyz.d2();
+        double dz = xyz.d3() - other.xyz.d3();
+        return dx * dx + dy * dy + dz * dz;
     }
 
     /**
@@ -87,7 +89,6 @@ public class Point {
      * @return distance between the points
      */
     public double distance(Point other) {
-
         return Math.sqrt(distanceSquared(other));
     }
 }
