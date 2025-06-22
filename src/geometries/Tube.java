@@ -4,6 +4,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import static primitives.Util.isZero;
+
 /**
  * Class Tube is the basic class representing a tube in Cartesian
  * 3-Dimensional coordinate system.
@@ -30,6 +32,18 @@ public class Tube extends RadialGeometry {
 
     @Override
     public Vector getNormal(Point point) {
-        return null;
+        // Find the projection of point onto the axis
+        Vector pointToAxisStart = point.subtract(axisRay.getP0());
+        double projectionLength = pointToAxisStart.dotProduct(axisRay.getDir());
+
+        // Special case: if the point projection coincides with ray start point
+        if (isZero(projectionLength)) {
+            return pointToAxisStart.normalize();
+        }
+
+        Point projectionPoint = axisRay.getP0().add(axisRay.getDir().scale(projectionLength));
+
+        // The normal is from the projection point to the given point
+        return point.subtract(projectionPoint).normalize();
     }
 }
