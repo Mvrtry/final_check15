@@ -1,25 +1,33 @@
 package unittests.geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Plane;
+import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Unit tests for geometries.Plane class
+ *
  * @author Maor Atari
  */
 class PlaneTests {
+    /**
+     * Default constructor for PlaneTests
+     */
+    public PlaneTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link geometries.Plane#Plane(primitives.Point, primitives.Point, primitives.Point)}. */
+    /**
+     * Test method for {@link Plane#Plane(Point, Point, Point)}.
+     */
     @Test
     void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
@@ -56,7 +64,9 @@ class PlaneTests {
                 "Constructed a plane with collinear points");
     }
 
-    /** Test method for {@link geometries.Plane#getNormal(primitives.Point)}. */
+    /**
+     * Test method for {@link Plane#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============

@@ -1,26 +1,34 @@
 package unittests.geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Cylinder;
+import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Unit tests for geometries.Cylinder class
+ *
  * @author Maor Atari
  */
 class CylinderTests {
+    /**
+     * Default constructor for CylinderTests
+     */
+    public CylinderTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}. */
+    /**
+     * Test method for {@link Cylinder#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         Ray axisRay = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));

@@ -1,24 +1,31 @@
 package unittests.primitives;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import primitives.Double3;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Unit tests for primitives.Vector class
+ *
  * @author Maor Atari
  */
 class VectorTests {
     /**
-     * Delta value for accuracy when comparing the numbers of type 'double' in
-     * assertEquals
+     * Default constructor for VectorTests
+     */
+    public VectorTests() {
+    }
+
+    /**
+     * Delta value for accuracy when comparing the numbers of type 'double' in assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link primitives.Vector#Vector(double, double, double)}. */
+    /**
+     * Test method for {@link Vector#Vector(double, double, double)}.
+     */
     @Test
     void testConstructor() {
         // =============== Boundary Values Tests ==================
@@ -32,7 +39,9 @@ class VectorTests {
                 "Zero vector with Double3 does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Vector#add(primitives.Vector)}. */
+    /**
+     * Test method for {@link Vector#add(Vector)}.
+     */
     @Test
     void testAdd() {
         // ============ Equivalence Partitions Tests ==============
@@ -51,7 +60,9 @@ class VectorTests {
                 "Vector + opposite vector does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Vector#subtract(primitives.Vector)}. */
+    /**
+     * Test method for {@link Vector#subtract(Vector)}.
+     */
     @Test
     void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -69,7 +80,9 @@ class VectorTests {
                 "Vector - itself does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Vector#scale(double)}. */
+    /**
+     * Test method for {@link Vector#scale(double)}.
+     */
     @Test
     void testScale() {
         // ============ Equivalence Partitions Tests ==============
@@ -90,7 +103,9 @@ class VectorTests {
                 "Vector scaling with zero does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}. */
+    /**
+     * Test method for {@link Vector#dotProduct(Vector)}.
+     */
     @Test
     void testDotProduct() {
         // ============ Equivalence Partitions Tests ==============
@@ -105,7 +120,9 @@ class VectorTests {
         assertEquals(0, v1.dotProduct(v3), DELTA, "Dot product of orthogonal vectors is not zero");
     }
 
-    /** Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}. */
+    /**
+     * Test method for {@link Vector#crossProduct(Vector)}.
+     */
     @Test
     void testCrossProduct() {
         // ============ Equivalence Partitions Tests ==============
@@ -127,7 +144,9 @@ class VectorTests {
                 "crossProduct() for parallel vectors does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Vector#lengthSquared()}. */
+    /**
+     * Test method for {@link Vector#lengthSquared()}.
+     */
     @Test
     void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
@@ -137,7 +156,9 @@ class VectorTests {
         assertEquals(9, v1.lengthSquared(), DELTA, "lengthSquared() wrong value");
     }
 
-    /** Test method for {@link primitives.Vector#length()}. */
+    /**
+     * Test method for {@link Vector#length()}.
+     */
     @Test
     void testLength() {
         // ============ Equivalence Partitions Tests ==============
@@ -147,7 +168,9 @@ class VectorTests {
         assertEquals(3, v1.length(), DELTA, "length() wrong value");
     }
 
-    /** Test method for {@link primitives.Vector#normalize()}. */
+    /**
+     * Test method for {@link Vector#normalize()}.
+     */
     @Test
     void testNormalize() {
         // ============ Equivalence Partitions Tests ==============
@@ -164,4 +187,5 @@ class VectorTests {
         // TC03: Test that normalized vector has same direction
         assertTrue(v.dotProduct(u) > 0, "the normalized vector is opposite to the original one");
     }
+
 }

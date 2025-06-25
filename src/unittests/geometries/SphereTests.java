@@ -1,25 +1,33 @@
 package unittests.geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Sphere;
+import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Unit tests for geometries.Sphere class
+ *
  * @author Maor Atari
  */
 class SphereTests {
+    /**
+     * Default constructor for SphereTests
+     */
+    public SphereTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link geometries.Sphere#getNormal(primitives.Point)}. */
+    /**
+     * Test method for {@link Sphere#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============

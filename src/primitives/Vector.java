@@ -53,6 +53,17 @@ public class Vector extends Point {
     public Vector add(Vector other) {
         return new Vector(xyz.add(other.xyz));
     }
+    
+    /**
+     * Subtracts another vector from this vector
+     *
+     * @param other the other vector to subtract
+     * @return new vector resulting from the subtraction
+     * @throws IllegalArgumentException if result is zero vector
+     */
+    public Vector subtract(Vector other) {
+        return new Vector(xyz.subtract(other.xyz));
+    }
 
     /**
      * Scales this vector by a scalar value

@@ -1,27 +1,33 @@
 package unittests.geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-import geometries.Plane;
 import geometries.Polygon;
-import primitives.*;
+import org.junit.jupiter.api.Test;
+import primitives.Point;
+import primitives.Vector;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing Polygons
+ *
  * @author Dan
  */
 class PolygonTests {
+    /**
+     * Default constructor for PolygonTests
+     */
+    public PolygonTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link geometries.Polygon#Polygon(primitives.Point...)}. */
+    /**
+     * Test method for {@link Polygon#Polygon(Point...)}.
+     */
     @Test
     void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
@@ -69,13 +75,15 @@ class PolygonTests {
 
     }
 
-    /** Test method for {@link geometries.Polygon#getNormal(primitives.Point)}. */
+    /**
+     * Test method for {@link Polygon#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here - using a quad
         Point[] pts =
-                { new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1) };
+                {new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1)};
         Polygon pol = new Polygon(pts);
         // ensure there are no exceptions
         assertDoesNotThrow(() -> pol.getNormal(new Point(0, 0, 1)), "");

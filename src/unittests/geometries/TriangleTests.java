@@ -1,25 +1,33 @@
 package unittests.geometries;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Triangle;
+import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Unit tests for geometries.Triangle class
+ *
  * @author Maor Atari
  */
 class TriangleTests {
+    /**
+     * Default constructor for TriangleTests
+     */
+    public TriangleTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link geometries.Triangle#getNormal(primitives.Point)}. */
+    /**
+     * Test method for {@link Triangle#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============

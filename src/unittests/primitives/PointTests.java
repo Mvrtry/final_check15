@@ -1,24 +1,33 @@
 package unittests.primitives;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import primitives.Point;
 import primitives.Vector;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
  * Unit tests for primitives.Point class
+ *
  * @author Maor Atari
  */
 class PointTests {
+    /**
+     * Default constructor for PointTests
+     */
+    public PointTests() {
+    }
+
     /**
      * Delta value for accuracy when comparing the numbers of type 'double' in
      * assertEquals
      */
     private static final double DELTA = 0.000001;
 
-    /** Test method for {@link primitives.Point#add(primitives.Vector)}. */
+    /**
+     * Test method for {@link Point#add(Vector)}.
+     */
     @Test
     void testAdd() {
         // ============ Equivalence Partitions Tests ==============
@@ -30,12 +39,15 @@ class PointTests {
         assertEquals(expected, p1.add(v1), "Point + Vector does not work correctly");
 
         // TC02: Addition with negative vector
-        Vector v2 = new Vector(-1, -2, -3);
-        Point expected2 = new Point(0, 0, 0);
-        assertEquals(expected2, p1.add(v2), "Point + negative Vector does not work correctly");
+        Point p2 = new Point(5, 7, 9);
+        Vector v2 = new Vector(-2, -3, -4);
+        Point expected2 = new Point(3, 4, 5);
+        assertEquals(expected2, p2.add(v2), "Point + negative Vector does not work correctly");
     }
 
-    /** Test method for {@link primitives.Point#subtract(primitives.Point)}. */
+    /**
+     * Test method for {@link Point#subtract(Point)}.
+     */
     @Test
     void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -53,7 +65,9 @@ class PointTests {
                 "Point - itself does not throw an exception");
     }
 
-    /** Test method for {@link primitives.Point#distanceSquared(primitives.Point)}. */
+    /**
+     * Test method for {@link Point#distanceSquared(Point)}.
+     */
     @Test
     void testDistanceSquared() {
         // ============ Equivalence Partitions Tests ==============
@@ -69,7 +83,9 @@ class PointTests {
         assertEquals(0, p1.distanceSquared(p1), DELTA, "Distance squared from point to itself is not zero");
     }
 
-    /** Test method for {@link primitives.Point#distance(primitives.Point)}. */
+    /**
+     * Test method for {@link Point#distance(Point)}.
+     */
     @Test
     void testDistance() {
         // ============ Equivalence Partitions Tests ==============
