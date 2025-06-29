@@ -8,6 +8,21 @@ package primitives;
  */
 public class Vector extends Point {
     /**
+     * X axis unit vector (1,0,0)
+     */
+    public static final Vector AXIS_X = new Vector(1, 0, 0);
+
+    /**
+     * Y axis unit vector (0,1,0)
+     */
+    public static final Vector AXIS_Y = new Vector(0, 1, 0);
+
+    /**
+     * Z axis unit vector (0,0,1)
+     */
+    public static final Vector AXIS_Z = new Vector(0, 0, 1);
+
+    /**
      * Constructor to initialize Vector based on three coordinate values
      *
      * @param x first coordinate value
@@ -33,6 +48,15 @@ public class Vector extends Point {
             throw new IllegalArgumentException("Zero vector is not allowed");
     }
 
+    /**
+     * Get the xyz coordinates
+     *
+     * @return Double3 object with coordinates
+     */
+    public Double3 getXyz() {
+        return xyz;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -53,7 +77,7 @@ public class Vector extends Point {
     public Vector add(Vector other) {
         return new Vector(xyz.add(other.xyz));
     }
-    
+
     /**
      * Subtracts another vector from this vector
      *

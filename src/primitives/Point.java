@@ -1,94 +1,144 @@
 package primitives;
 
+import java.lang.reflect.Field;
+
 /**
- * Class Point is the basic class representing a point of Euclidean geometry in Cartesian
- * 3-Dimensional coordinate system.
+ * This class represents a Point in 3D space
  *
  * @author Maor Atari
  */
 public class Point {
     /**
-     * Zero point (0,0,0)
-     */
-    public static final Point ZERO = new Point(0, 0, 0);
-
-    /**
-     * The coordinates of the point
+     * Coordinate values
      */
     protected final Double3 xyz;
 
     /**
-     * Constructor to initialize Point based on three coordinate values
+     * Zero point constant
+     */
+    public static final Point ZERO = new Point(0, 0, 0);
+
+    /**
+     * Constructor to initialize Point with three number values
      *
-     * @param x first coordinate value
-     * @param y second coordinate value
-     * @param z third coordinate value
+     * @param x first number value
+     * @param y second number value
+     * @param z third number value
      */
     public Point(double x, double y, double z) {
-        this.xyz = new Double3(x, y, z);
+        xyz = new Double3(x, y, z);
     }
 
     /**
-     * Constructor to initialize Point based on Double3 object
+     * Constructor to initialize Point with Double3 object
      *
-     * @param xyz Double3 object containing all three coordinates
+     * @param xyz Double3 object
      */
-    public Point(Double3 xyz) {
+    Point(Double3 xyz) {
         this.xyz = xyz;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        return (obj instanceof Point other)
-                && this.xyz.equals(other.xyz);
-    }
-
-    @Override
-    public String toString() {
-        return "" + xyz;
-    }
-
     /**
-     * Adds a vector to this point
+     * Get X coordinate using reflection
      *
-     * @param vector the vector to add
-     * @return new point after adding the vector
+     * @return X coordinate
      */
-    public Point add(Vector vector) {
-        return new Point(xyz.add(vector.xyz));
+    public double getX() {
+        try {
+            Field field = Double3.class.getDeclaredField("d1");
+            field.setAccessible(true);
+            return (Double) field.get(xyz);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot access d1 field", e);
+        }
     }
 
     /**
-     * Subtracts another point from this point
+     * Get Y coordinate using reflection
      *
-     * @param other the other point to subtract
-     * @return vector from other point to this point
+     * @return Y coordinate
+     */
+    public double getY() {
+        try {
+            Field field = Double3.class.getDeclaredField("d2");
+            field.setAccessible(true);
+            return (Double) field.get(xyz);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot access d2 field", e);
+        }
+    }
+
+    /**
+     * Get Z coordinate using reflection
+     *
+     * @return Z coordinate
+     */
+    public double getZ() {
+        try {
+            Field field = Double3.class.getDeclaredField("d3");
+            field.setAccessible(true);
+            return (Double) field.get(xyz);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot access d3 field", e);
+        }
+    }
+
+    /**
+     * Vector subtraction - creates vector from this point to other point
+     *
+     * @param other the other point
+     * @return new Vector from this point to other point
      */
     public Vector subtract(Point other) {
         return new Vector(xyz.subtract(other.xyz));
     }
 
     /**
-     * Calculates the squared distance between this point and another point
+     * Point addition with vector
+     *
+     * @param vector vector to add to this point
+     * @return new Point result of the addition
+     */
+    public Point add(Vector vector) {
+        return new Point(xyz.add(vector.xyz));
+    }
+
+    /**
+     * Calculate squared distance between two points
      *
      * @param other the other point
-     * @return squared distance between the points
+     * @return squared distance
      */
     public double distanceSquared(Point other) {
-        double dx = xyz.d1() - other.xyz.d1();
-        double dy = xyz.d2() - other.xyz.d2();
-        double dz = xyz.d3() - other.xyz.d3();
+        double dx = getX() - other.getX();
+        double dy = getY() - other.getY();
+        double dz = getZ() - other.getZ();
         return dx * dx + dy * dy + dz * dz;
     }
 
     /**
-     * Calculates the distance between this point and another point
+     * Calculate distance between two points
      *
      * @param other the other point
-     * @return distance between the points
+     * @return distance
      */
     public double distance(Point other) {
         return Math.sqrt(distanceSquared(other));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj instanceof Point other && xyz.equals(other.xyz);
+    }
+
+    @Override
+    public int hashCode() {
+        return xyz.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Point " + xyz;
     }
 }

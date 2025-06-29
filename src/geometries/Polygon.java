@@ -91,4 +91,10 @@ public class Polygon extends Geometry {
         return plane.getNormal(point);
     }
 
+    @Override
+    protected List<Intersection> calculateIntersectionsHelper(Ray ray) {
+        // For now, return null (no intersections calculated)
+        // This can be implemented in future stages if needed
+        return null;
+    }
 }
